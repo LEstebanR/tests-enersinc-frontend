@@ -21,11 +21,11 @@ const Home = () => {
   return (
 
       <Box className={classes.homeContainer}>
-        <Typography variant="h1">Users</Typography>
+        <Typography variant="h1">Usuarios</Typography>
         <Box className={classes.homeButtonsContainer}>
           <Link to="/users">
             <Button variant="contained" color="primary">
-              Users
+              Usuarios
             </Button>
           </Link>
           <Link to="/createuser">

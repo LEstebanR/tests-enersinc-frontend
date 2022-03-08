@@ -1,6 +1,8 @@
 import { Box,  TextField, Select, InputLabel, MenuItem, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from 'sweetalert2'
 
 const useStyles = makeStyles({
   formContainer : {
@@ -43,7 +45,26 @@ const CreateUserForm = () => {
   const handleHobbie = (event) => { setNewUser(
     {...newUser, hobbie: event.target.value}
   )}
-  const createUser = () => {console.log(newUser)}
+  const createUser = () => {
+    console.log(newUser);
+    axios.post("https://test-enersinc.herokuapp.com/users", newUser)
+    .then(res => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario creado',
+        text: 'El usuario ha sido creado con exito',
+      })
+      console.log(res)
+    })
+    .catch(err => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Verifica los datos ingresados',
+      })
+      console.log(err)
+    })
+  }
 
   useEffect(() => {
     if(newUser.name && newUser.lastName && newUser.documentType && newUser.documentNumber && newUser.hobbie){
