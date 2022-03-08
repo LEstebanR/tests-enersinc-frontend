@@ -1,0 +1,40 @@
+table{
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+  border: 1px solid #ccc;
+  box-shadow:  0px 0px 10px #ccc;
+  
+
+}
+
+thead{
+  background: #f1f1f1;
+  font-weight: bold;
+  height: 2rem;
+  padding: 5px
+
+}
+
+tbody{
+  height: 2rem;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+tr{
+  height: 2rem;
+  padding: 5px;
+  border:  1px solid #ccc;
+}
+
+td, th{
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
