@@ -1,12 +1,37 @@
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { GrEdit } from "react-icons/gr";
 import { RiDeleteBinLine } from "react-icons/ri";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../assets/styles/usersTable.css';
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const UsersTable = ({users}) => {
+  
+  const deleteUser = (e) => {
+    axios.delete('https://test-enersinc.herokuapp.com/user', { data: {userId: e.currentTarget.value}})
+    .then(res => {
+      console.log(res);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El usuario ha sido borrado!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
+        window.location.reload()
+      } , 1500)
+    })
+    .catch(err => {
+      console.log(err);
+    }
+    )
+  }
+
+
   return (
     <table>
       <thead>
@@ -20,15 +45,14 @@ const UsersTable = ({users}) => {
       </thead>
       <tbody>
         {users.map(user => (
-          <tr key={user.id}>
+          <tr key={user._id}>
             <td>{user.name}</td>
             <td>{user.lastName}</td>
             <td>{user.documentType}. {user.documentNumber}</td>
             <td>{user.hobbie}</td>
             <td> 
-              <EditIcon />
-              <DeleteIcon />
-
+              <IconButton><EditIcon /></IconButton>
+              <IconButton onClick={deleteUser} value={user._id}><DeleteIcon /></IconButton>
             </td>
           </tr>
         ))}
