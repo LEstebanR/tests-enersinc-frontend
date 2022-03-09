@@ -50,17 +50,23 @@ const CreateUserForm = () => {
     axios.post("https://test-enersinc.herokuapp.com/users", newUser)
     .then(res => {
       Swal.fire({
+        position: 'center',
         icon: 'success',
-        title: 'Usuario creado',
-        text: 'El usuario ha sido creado con exito',
+        title: 'El usuario ha sido creado!',
+        showConfirmButton: false,
+        timer: 1500
       })
-      console.log(res)
+      setTimeout(() => {
+        window.location.href = "/users";
+      } , 1500)
+      console.log(res);
     })
-    .catch(err => {
+  .catch(err => {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Verifica los datos ingresados',
+        timer: 1500
       })
       console.log(err)
     })
@@ -80,9 +86,9 @@ const CreateUserForm = () => {
       <TextField className={classes.input} required label="Apellido" onChange={handleLastName} />
       <InputLabel className={classes.input} id="demo-simple-select-label">Tipo de documento</InputLabel>
         <Select className={classes.input} value={docType} label="Tipo de documento"onChange={handleDocType}>
-          <MenuItem value={"TI"}>TI</MenuItem>
-          <MenuItem value={"CC"}>CC</MenuItem>
-          <MenuItem value={"NIT"}>NIT</MenuItem>
+          <MenuItem value="TI">TI</MenuItem>
+          <MenuItem value="CC">CC</MenuItem>
+          <MenuItem value="NIT">NIT</MenuItem>
         </Select>
       <TextField className={classes.input} required label="Documento"onChange={handleDocNumber} />
       <TextField className={classes.input} required label="Pasatiempo" onChange={handleHobbie} />

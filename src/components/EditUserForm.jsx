@@ -1,8 +1,11 @@
-import { Box,  TextField, Select, InputLabel, MenuItem, Button } from "@mui/material";
+import { Box,  TextField, Select, InputLabel, MenuItem, Button, Input } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from 'sweetalert2'
+
+
 
 const useStyles = makeStyles({
   formContainer : {
@@ -29,6 +32,20 @@ const docType = "";
 const EditUserForm = () => {
   const [newUser, setNewUser] = useState({})
   const classes = useStyles();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios.get(`https://test-enersinc.herokuapp.com/user/${id}`)
+      .then(res => {
+      setNewUser(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+
   const handleName = (event) => { setNewUser(
     {...newUser, name: event.target.value}
   )}
@@ -44,44 +61,54 @@ const EditUserForm = () => {
   const handleHobbie = (event) => { setNewUser(
     {...newUser, hobbie: event.target.value}
   )}
-  const createUser = () => {
-    console.log(newUser);
-    axios.post("https://test-enersinc.herokuapp.com/users", newUser)
+
+  const updateUser = () => {
+    axios.put(`https://test-enersinc.herokuapp.com/user/${id}`, newUser)
     .then(res => {
       Swal.fire({
+        position: 'center',
         icon: 'success',
-        title: 'Usuario creado',
-        text: 'El usuario ha sido creado con exito',
+        title: 'El usuario ha sido actualizado!',
+        showConfirmButton: false,
+        timer: 1500
       })
+      setTimeout(() => {
+        window.location.href = "/users"
+
+      } , 1500)
       console.log(res)
     })
     .catch(err => {
       Swal.fire({
         icon: 'error',
-        title: 'Error',
-        text: 'Verifica los datos ingresados',
+        title: 'Error, verifica la información',
       })
       console.log(err)
     })
   }
 
-
   return (
+  
     <Box className = {classes.formContainer}>
-      <TextField className={classes.input} required label="Nombre" onChange={handleName} />
-      <TextField className={classes.input} required label="Apellido" onChange={handleLastName} />
+      <InputLabel className={classes.input} id="demo-simple-select-label">Nombre</InputLabel>
+      <TextField  hiddenlabel="true" placeholder={newUser.name} variant="outlined" onChange={handleName}/>
+      <InputLabel className={classes.input} id="demo-simple-select-label">Apellido</InputLabel>
+      <TextField className={classes.input} required hiddenlabel="true" placeholder={newUser.lastName} onChange={handleLastName} />
       <InputLabel className={classes.input} id="demo-simple-select-label">Tipo de documento</InputLabel>
-        <Select className={classes.input} value={docType} label="Tipo de documento"onChange={handleDocType}>
-          <MenuItem value={"TI"}>TI</MenuItem>
-          <MenuItem value={"CC"}>CC</MenuItem>
-          <MenuItem value={"NIT"}>NIT</MenuItem>
+        <Select className={classes.input} onChange={handleDocType} labelId="demo-simple-select-label" value="CC" id="demo-simple-select">
+          <MenuItem value="TI">TI</MenuItem>
+          <MenuItem value="CC">CC</MenuItem>
+          <MenuItem value="NIT">NIT</MenuItem>
         </Select>
-      <TextField className={classes.input} required label="Documento"onChange={handleDocNumber} />
-      <TextField className={classes.input} required label="Pasatiempo" onChange={handleHobbie} />
-        <Button className={classes.input} variant="contained" color="primary" onClick={createUser} >Aceptar</Button>  
+      <InputLabel className={classes.input} id="demo-simple-select-label">Número de documento</InputLabel>
+      <TextField className={classes.input} datatype="Number"  required hiddenlabel="true" placeholder={String(newUser.documentNumber)} onChange={handleDocNumber} />
+      <InputLabel className={classes.input} id="demo-simple-select-label">Pasatiempo</InputLabel>
+      <TextField className={classes.input} required hiddenlabel="true" placeholder={newUser.hobbie} onChange={handleHobbie} />
+        <Button className={classes.input} variant="contained" color="primary"  onClick={updateUser}>Aceptar</Button>  
     </Box>
 
   );
+
 }
 
 export default EditUserForm;
