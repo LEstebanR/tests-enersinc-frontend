@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     boxShadow: "0px 0px 10px #CCC",
     borderRadius: "10px",
     paddingTop: "30px",
+    backgroundColor: "#FFF",
   },
   input: {
     width: "80%",
@@ -93,8 +94,8 @@ const CreateUserForm = () => {
       <TextField className={classes.input} required label="Documento"onChange={handleDocNumber} />
       <TextField className={classes.input} required label="Pasatiempo" onChange={handleHobbie} />
       { disableButton ? 
-        <Button className={classes.input} variant="contained" color="primary" disabled >Crear usuario</Button> :
-        <Button className={classes.input} variant="contained" color="primary" onClick={createUser} >Crear usuario</Button>  
+        <Button className={classes.input} variant="outlined" color="primary" disabled >Crear usuario</Button> :
+        <Button className={classes.input} variant="outlined" color="primary" onClick={createUser} >Crear usuario</Button>  
     }
     </Box>
 

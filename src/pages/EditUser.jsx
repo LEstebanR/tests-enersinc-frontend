@@ -1,4 +1,4 @@
-import { Box, Typography} from "@mui/material";
+import { Box, Typography, Button} from "@mui/material";
 import EditUserForm from "../components/EditUserForm.jsx";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
@@ -8,10 +8,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     gap: "20px",
     marginTop: "50px",
     textAlign: "center",
+    height: "100vh",
     
   }
 })
@@ -21,7 +22,7 @@ const CreateUser = () => {
   return (
     <Box className={classes.EditUser}>
       <Typography variant="h3">Editar Usuario</Typography>
-      <Link to="/">Volver al inicio</Link>
+      <Link to="/"><Button variant="outlined">Volver al inicio</Button></Link>
       <EditUserForm/>
     </Box>
   );

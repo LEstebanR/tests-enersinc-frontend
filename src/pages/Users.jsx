@@ -9,10 +9,11 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   usersContainer: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
     marginTop: "50px",
+    minHeight: "100vh",
   }
 })
 
@@ -29,7 +30,7 @@ const Users = () => {
   return (
     <Box className={classes.usersContainer}>
       <Typography variant="h3">Usuarios</Typography>
-      <Link to="/">Volver al inicio</Link>
+      <Link to="/"><Button variant="outlined">Volver al inicio</Button></Link>
       <UsersTable users={users} />
     </Box>
   );

@@ -1,6 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import { Player} from '@lottiefiles/react-lottie-player';
+import styled from "@emotion/styled";
 
 const useStyles = makeStyles({
   homeContainer: {
@@ -13,7 +15,13 @@ const useStyles = makeStyles({
   },
   homeButtonsContainer: {
     display: "flex",
+    
+  },
+
+  homeButton: {
+    width: "200px"
   }
+
 });
 
 const Home = () => {
@@ -21,16 +29,20 @@ const Home = () => {
   return (
 
       <Box className={classes.homeContainer}>
-        <Typography variant="h1">Usuarios</Typography>
+        <Player autoplay loop
+          src="https://assets10.lottiefiles.com/packages/lf20_VWOntT.json"
+          style={ {width: "auto", height: "400px"} }
+          >
+        </Player>   
         <Box className={classes.homeButtonsContainer}>
           <Link to="/users">
-            <Button variant="contained" color="primary">
+            <Button className={classes.homeButton} variant="outlined" color="primary" size="large">
               Usuarios
             </Button>
           </Link>
           <Link to="/createuser">
-            <Button variant="contained" color="primary">
-              Create User
+            <Button className={classes.homeButton} variant="outlined" color="primary" size="large">
+              Crear usuario
             </Button>
           </Link>
         </Box>

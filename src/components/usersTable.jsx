@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { Button, IconButton } from "@mui/material";
-import { GrEdit } from "react-icons/gr";
-import { RiDeleteBinLine } from "react-icons/ri";
+import {  IconButton } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../assets/styles/usersTable.css';
@@ -57,6 +56,7 @@ const UsersTable = ({users}) => {
             <td> 
               <IconButton onClick={goToEditPage} value={user._id}><EditIcon /></IconButton>
               <IconButton onClick={deleteUser} value={user._id}><DeleteIcon /></IconButton>
+              <Link to="/createUser"><IconButton><AddIcon/></IconButton></Link>
             </td>
           </tr>
         ))}

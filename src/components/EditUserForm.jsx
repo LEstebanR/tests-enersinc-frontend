@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     boxShadow: "0px 0px 10px #CCC",
     borderRadius: "10px",
     paddingTop: "30px",
+    backgroundColor: "#FFF",
   },
   input: {
     width: "80%",
@@ -104,7 +105,7 @@ const EditUserForm = () => {
       <TextField className={classes.input} datatype="Number"  required hiddenlabel="true" placeholder={String(newUser.documentNumber)} onChange={handleDocNumber} />
       <InputLabel className={classes.input} id="demo-simple-select-label">Pasatiempo</InputLabel>
       <TextField className={classes.input} required hiddenlabel="true" placeholder={newUser.hobbie} onChange={handleHobbie} />
-        <Button className={classes.input} variant="contained" color="primary"  onClick={updateUser}>Aceptar</Button>  
+        <Button className={classes.input} variant="outlined" color="primary"  onClick={updateUser}>Aceptar</Button>  
     </Box>
 
   );
