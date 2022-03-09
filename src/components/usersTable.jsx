@@ -31,6 +31,10 @@ const UsersTable = ({users}) => {
     )
   }
 
+  const goToEditPage = (e) => {
+    window.location.href = `/edituser/${e.currentTarget.value}`
+  }
+
 
   return (
     <table>
@@ -51,7 +55,7 @@ const UsersTable = ({users}) => {
             <td>{user.documentType}. {user.documentNumber}</td>
             <td>{user.hobbie}</td>
             <td> 
-              <IconButton><EditIcon /></IconButton>
+              <IconButton onClick={goToEditPage} value={user._id}><EditIcon /></IconButton>
               <IconButton onClick={deleteUser} value={user._id}><DeleteIcon /></IconButton>
             </td>
           </tr>
