@@ -5,6 +5,8 @@ import UsersTable from "../components/usersTable";
 import {Link} from "react-router-dom";
 import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { Player} from '@lottiefiles/react-lottie-player';
+
 
 const useStyles = makeStyles({
   usersContainer: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles({
 
 const Users = () => {
   const classes = useStyles();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     axios.get("https://test-enersinc.herokuapp.com/users").then(res => {
@@ -31,7 +33,13 @@ const Users = () => {
     <Box className={classes.usersContainer}>
       <Typography variant="h3">Usuarios</Typography>
       <Link to="/"><Button variant="outlined">Volver al inicio</Button></Link>
-      <UsersTable users={users} />
+      {users ? <UsersTable users={users} /> : 
+        <Player autoplay loop
+          src="https://assets3.lottiefiles.com/packages/lf20_jwhcwtc2.json"
+          style={ {width: "auto", height: "400px", marginTop: '50px'} }
+        >
+        </Player>
+      }
     </Box>
   );
 }
