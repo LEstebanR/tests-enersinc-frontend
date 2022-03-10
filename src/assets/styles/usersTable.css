@@ -45,5 +45,11 @@ td, th{
     width: 100%;
     font-size: 0.6rem;
   }
+
+  .optionsrow{
+    width: 15px;
+  }
+
+
 }
 

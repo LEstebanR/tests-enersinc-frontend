@@ -43,7 +43,7 @@ const UsersTable = ({users}) => {
           <th>Apellido</th>
           <th>Documento</th>
           <th>Pasatiempo</th>
-          <th>Opciones</th>
+          <th className="optionsrow">Opciones</th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +53,7 @@ const UsersTable = ({users}) => {
             <td>{user.lastName}</td>
             <td>{user.documentType}. {user.documentNumber}</td>
             <td>{user.hobbie}</td>
-            <td> 
+            <td className="optionsrow"> 
               <IconButton onClick={goToEditPage} value={user._id}><EditIcon /></IconButton>
               <IconButton onClick={deleteUser} value={user._id}><DeleteIcon /></IconButton>
               <Link to="/createUser"><IconButton><AddIcon/></IconButton></Link>
