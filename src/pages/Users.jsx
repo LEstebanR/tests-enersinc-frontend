@@ -14,8 +14,8 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     flexDirection: "column",
-    marginTop: "50px",
-    minHeight: "100vh",
+    paddingTop: "150px",
+    minHeight: "82vh",
   }
 })
 

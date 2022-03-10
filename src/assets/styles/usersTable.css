@@ -40,3 +40,10 @@ td, th{
   border: 1px solid #ccc;
 }
 
+@media (max-width: 768px){
+  table{
+    width: 100%;
+    font-size: 0.7rem;
+  }
+}
+
