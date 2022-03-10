@@ -43,7 +43,7 @@ td, th{
 @media (max-width: 768px){
   table{
     width: 100%;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 }
 
