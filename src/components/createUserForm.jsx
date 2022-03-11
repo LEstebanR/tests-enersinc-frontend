@@ -86,7 +86,7 @@ const CreateUserForm = () => {
       <TextField className={classes.input} required label="Nombre" onChange={handleName} />
       <TextField className={classes.input} required label="Apellido" onChange={handleLastName} />
       <InputLabel className={classes.input} id="demo-simple-select-label">Tipo de documento</InputLabel>
-        <Select className={classes.input} value={docType} label="Tipo de documento"onChange={handleDocType}>
+        <Select className={classes.input} value={newUser.documentType} labelId="demo-simple-select-label" onChange={handleDocType} id="demo-simple-select">
           <MenuItem value="TI">TI</MenuItem>
           <MenuItem value="CC">CC</MenuItem>
           <MenuItem value="NIT">NIT</MenuItem>
